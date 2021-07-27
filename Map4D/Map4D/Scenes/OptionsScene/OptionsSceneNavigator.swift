@@ -1,2 +1,0 @@
-protocol OptionsSceneNavigator: Navigator {
-}
