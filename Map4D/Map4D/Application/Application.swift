@@ -1,8 +1,39 @@
-//
-//  Application.swift
-//  Map4D
-//
-//  Created by Tien Le Phuoc Vu on 27/07/2021.
-//
+import UIKit
+import Domain
+import NetworkPlatform
+import CoreDataPlatform
 
-import Foundation
+final class Application {
+  
+  static let shared = Application()
+  private let networkUseCaseProvider: Domain.UseCaseProvider
+  
+  private init() {
+    self.networkUseCaseProvider = NetworkPlatform.UseCaseProvider()
+  }
+  
+  func configure(in window: UIWindow) {
+    let savedNavigator = DefaultSavedNavigator(
+      services: networkUseCaseProvider,
+      navigationController: NavigationController()
+    )
+    
+    let homeNavigator = DefaultHomeNavigator(
+      services: networkUseCaseProvider,
+      navigationController: NavigationController()
+    )
+    
+    let optionsNavigator = DefaultOptionsNavigator(
+      services: networkUseCaseProvider,
+      navigationController: NavigationController()
+    )
+    
+    let navigators: [Navigator] = [
+      savedNavigator,
+      homeNavigator,
+      optionsNavigator
+    ]
+    window.rootViewController = TabBarController(navigators: navigators)
+    window.makeKeyAndVisible()
+  }
+}

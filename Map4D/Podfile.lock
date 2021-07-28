@@ -1,0 +1,76 @@
+PODS:
+  - Alamofire (5.4.3)
+  - Differentiator (4.0.1)
+  - Kingfisher (5.15.8):
+    - Kingfisher/Core (= 5.15.8)
+  - Kingfisher/Core (5.15.8)
+  - Map4dMap (1.6.0)
+  - Nimble (9.2.0)
+  - RxAlamofire (5.7.1):
+    - RxAlamofire/Core (= 5.7.1)
+  - RxAlamofire/Core (5.7.1):
+    - Alamofire (~> 5.4)
+    - RxSwift (~> 5.1)
+  - RxBlocking (5.1.1):
+    - RxSwift (~> 5)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.2)
+  - RxTest (5.1.2):
+    - RxSwift (~> 5)
+  - SnapKit (5.0.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - Kingfisher (~> 5.15)
+  - Map4dMap
+  - Nimble
+  - RxAlamofire
+  - RxBlocking
+  - RxCocoa (~> 5.0)
+  - RxDataSources (~> 4.0)
+  - RxSwift (~> 5.0)
+  - RxTest
+  - SnapKit (~> 5.0.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Differentiator
+    - Kingfisher
+    - Map4dMap
+    - Nimble
+    - RxAlamofire
+    - RxBlocking
+    - RxCocoa
+    - RxDataSources
+    - RxRelay
+    - RxSwift
+    - RxTest
+    - SnapKit
+
+SPEC CHECKSUMS:
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
+  Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
+  Map4dMap: bed29f302e071cf47f3535ca24da58aa48490f48
+  Nimble: 4f4a345c80b503b3ea13606a4f98405974ee4d0b
+  RxAlamofire: 8e144c62dcc01d68dcb366bfc542eb6dd46bab78
+  RxBlocking: 5f700a78cad61ce253ebd37c9a39b5ccc76477b4
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 1e2e1f9570186967f617e49128ed26ccf1bafc8e
+  RxTest: 274549b747dca56f47c52c8991ec5cf797ecfe40
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+
+PODFILE CHECKSUM: c68f4366dfe8aa37542f5422bbedb1576ef19d1c
+
+COCOAPODS: 1.10.1
