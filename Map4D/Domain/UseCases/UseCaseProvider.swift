@@ -1,5 +1,6 @@
-
-
 public protocol UseCaseProvider {
-    func makeScenesUseCase() -> ScenesUseCase
+  func makeHomeUseCase() -> HomeUseCase
+  func makeSavedUseCase() -> SavedUseCase
+  func makeOptionsUseCase() -> OptionsUseCase
+  func makeSearchUseCase() -> SearchUseCase
 }

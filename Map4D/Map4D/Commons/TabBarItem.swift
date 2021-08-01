@@ -20,11 +20,11 @@ extension UITabBarController {
     var icon: UIImage? {
       switch self {
       case .saved:
-        return UIImage(named: "Toolbox")
+        return R.image.saved()
       case .main:
-        return UIImage(named: "Toolbox")
+        return R.image.homeBlue()
       case .option:
-        return UIImage(named: "Toolbox")
+        return R.image.option()
       }
     }
     

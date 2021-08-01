@@ -12,7 +12,6 @@ class HomeScene: Scene {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    content.backgroundColor = .red
   }
   
   override func loadView() {
@@ -24,25 +23,31 @@ class HomeScene: Scene {
   
   private func bindViewModel() {
     assert(viewModel != nil)
+    
     content.mapView.delegate = self
-//    
-//    let idTriger = poiBehaviorRelay
-//      .flatMapLatest { id -> Driver<String> in
-//        if let id = id {
-//          return Driver.of(id)
-//        }
-//        return .empty()
-//      }
-//      .asDriverOnErrorJustComplete()
-//    
-    let input = HomeViewModel.Input()
+    
+    let viewWillAppear = rx
+      .sentMessage(#selector(UIViewController.viewWillAppear(_:)))
+      .mapToVoid()
+      .asDriverOnErrorJustComplete()
+    
+    let gestureSearch = UITapGestureRecognizer()
+    content.searchView.addGestureRecognizer(gestureSearch)
+    let searchTrigger = gestureSearch.rx
+      .event
+      .mapToVoid()
+      .asDriverOnErrorJustComplete()
+    
+    let input = HomeViewModel.Input(
+      trigger: viewWillAppear,
+      searchTriger: searchTrigger
+    )
+    
     let output = viewModel.transform(input: input)
     
-//    output.result
-//      .drive(onNext: { [weak self] item in
-//        self?.alert(item: item.place)
-//      })
-//      .disposed(by: disposeBag)
+    output.searchResult
+      .drive()
+      .disposed(by: disposeBag)
   }
   
   private func setConstaint() {
@@ -63,7 +68,7 @@ extension HomeScene: MFMapViewDelegate {
     name: String!,
     location: CLLocationCoordinate2D
   ) {
-    print(name)
+    print(name ?? "")
   }
 }
 

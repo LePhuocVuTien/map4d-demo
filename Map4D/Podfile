@@ -3,11 +3,11 @@ platform :ios, '11.0'
 inhibit_all_warnings!
 
 def rx_swift
-    pod 'RxSwift', '~> 5.0'
+    pod 'RxSwift'
 end
 
 def rx_cocoa
-    pod 'RxCocoa', '~> 5.0'
+    pod 'RxCocoa'
 end
 
 def test_pods
@@ -26,7 +26,9 @@ target 'Map4D' do
   pod 'Map4dMap'
   pod 'SnapKit', '~> 5.0.0'
   pod 'Kingfisher', '~> 5.15'
-  pod 'RxDataSources', '~> 4.0'
+  pod 'RxDataSources'
+  pod 'RxUIAlert'
+  pod 'R.swift'
 
   target 'Map4DTests' do
     inherit! :search_paths

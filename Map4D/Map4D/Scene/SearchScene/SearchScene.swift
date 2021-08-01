@@ -3,17 +3,22 @@ import Map4dMap
 import SnapKit
 import RxCocoa
 import RxSwift
+import RxDataSources
 
 class SearchScene: Scene {
   
+  typealias ElementData = SearchViewModel.Element
   private let disposeBag = DisposeBag()
   var viewModel: SearchViewModel!
+  
+  private lazy var dataSource: RxTableDataSource = {
+    return createDataSource()
+  }()
   
   lazy var content = ContentView(frame: .zero)
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    content.backgroundColor = .white
   }
   
   override func loadView() {
@@ -24,18 +29,31 @@ class SearchScene: Scene {
   }
   
   private func bindViewModel() {
+    content.searchBar.backButton.rx.tap
+      .subscribe(onNext: { [weak self] _ in
+        self?.dismiss(animated: true, completion: nil)
+      })
+      .disposed(by: disposeBag)
     
-    let viewWillAppear = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
-      .mapToVoid()
+    let queryTrigger = content.searchBar.textField!.rx
+      .text
+      .orEmpty
+      .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
+      .distinctUntilChanged()
     
-    let input = SearchViewModel.Input(trigger: viewWillAppear.asDriverOnErrorJustComplete())
+    let input = SearchViewModel.Input(textTrigger: queryTrigger.asDriverOnErrorJustComplete())
     let output = viewModel.transform(input: input)
     
-//    output.result
-//      .drive(onNext: { [weak self] item in
-//        self?.alert(item: item.place)
-//      })
-//      .disposed(by: disposeBag)
+    output.createSearch
+      .drive(content.tableView.rx.items(dataSource: dataSource))
+      .disposed(by: disposeBag)
+    
+    output.error
+      .drive(onNext: { error in
+        dump(error)
+        print(error.localizedDescription)
+      })
+      .disposed(by: disposeBag)
   }
   
   private func setConstaint() {
@@ -48,4 +66,3 @@ class SearchScene: Scene {
     view.addSubview(content)
   }
 }
-

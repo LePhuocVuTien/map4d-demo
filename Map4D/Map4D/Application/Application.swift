@@ -6,25 +6,26 @@ import CoreDataPlatform
 final class Application {
   
   static let shared = Application()
-  private let networkUseCaseProvider: Domain.UseCaseProvider
+  private let useCaseProvider: Domain.UseCaseProvider
   
   private init() {
-    self.networkUseCaseProvider = NetworkPlatform.UseCaseProvider()
+    self.useCaseProvider = NetworkPlatform.UseCaseProvider()
+    UIFont.registerCustomFonts()
   }
   
   func configure(in window: UIWindow) {
     let savedNavigator = DefaultSavedNavigator(
-      services: networkUseCaseProvider,
+      services: useCaseProvider,
       navigationController: NavigationController()
     )
     
     let homeNavigator = DefaultHomeNavigator(
-      services: networkUseCaseProvider,
+      services: useCaseProvider,
       navigationController: NavigationController()
     )
     
     let optionsNavigator = DefaultOptionsNavigator(
-      services: networkUseCaseProvider,
+      services: useCaseProvider,
       navigationController: NavigationController()
     )
     

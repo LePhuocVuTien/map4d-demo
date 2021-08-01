@@ -24,18 +24,6 @@ class SavedScene: Scene {
   }
   
   private func bindViewModel() {
-    
-    let viewWillAppear = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
-      .mapToVoid()
-    
-    let input = SavedViewModel.Input(trigger: viewWillAppear.asDriverOnErrorJustComplete())
-    let output = viewModel.transform(input: input)
-    
-//    output.result
-//      .drive(onNext: { [weak self] item in
-//        self?.alert(item: item.place)
-//      })
-//      .disposed(by: disposeBag)
   }
   
   private func setConstaint() {

@@ -13,10 +13,10 @@ final class OptionsViewModel: ViewModelType {
     //    let error: Driver<Error>
   }
   
-  private let useCase: ScenesUseCase
+  private let useCase: Domain.OptionsUseCase
   private let navigator: OptionsNavigator
   
-  init(useCase: ScenesUseCase, navigator: OptionsNavigator) {
+  init(useCase: Domain.OptionsUseCase, navigator: OptionsNavigator) {
     self.useCase = useCase
     self.navigator = navigator
   

@@ -2,7 +2,7 @@ import UIKit
 import Domain
 
 protocol SearchNavigator: Navigator {
-  func toGroupDetail()
+  func toDismiss()
 }
 
 class DefaultSearchNavigator: SearchNavigator {
@@ -16,13 +16,14 @@ class DefaultSearchNavigator: SearchNavigator {
   }
   
   func toScene() {
-    let viewModel = SearchViewModel(useCase: services.makeScenesUseCase(), navigator: self)
+    let viewModel = SearchViewModel(useCase: services.makeSearchUseCase(), navigator: self)
     let scene = SearchScene()
+    scene.modalPresentationStyle = .fullScreen
     scene.viewModel = viewModel
-    navigationController.show(scene, sender: nil)
+    navigationController.present(scene, animated: true, completion: nil)
   }
   
-  func toGroupDetail() {
-    print("toGroupDetail")
+  func toDismiss() {
+    navigationController.dismiss(animated: true, completion: nil)
   }
 }

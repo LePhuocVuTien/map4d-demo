@@ -7,16 +7,16 @@ protocol SavedNavigator: Navigator {
 
 class DefaultSavedNavigator: SavedNavigator {
   
-  private let services: UseCaseProvider
+  private let services: Domain.UseCaseProvider
   let navigationController: NavigationController
   
-  init(services: UseCaseProvider, navigationController: NavigationController) {
+  init(services: Domain.UseCaseProvider, navigationController: NavigationController) {
     self.services = services
     self.navigationController = navigationController
   }
   
   func toScene() {
-    let viewModel = SavedViewModel(useCase: services.makeScenesUseCase(), navigator: self)
+    let viewModel = SavedViewModel(useCase: services.makeSavedUseCase(), navigator: self)
     let scene = SavedScene()
     scene.viewModel = viewModel
     navigationController.show(scene, sender: nil)

@@ -24,11 +24,11 @@ class OptionsScene: Scene {
   
   private func bindViewModel() {
     
-    let viewWillAppear = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
-      .mapToVoid()
+//    let viewWillAppear = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
+//      .mapToVoid()
     
-    let input = OptionsViewModel.Input(trigger: viewWillAppear.asDriverOnErrorJustComplete())
-    let output = viewModel.transform(input: input)
+//   let input = OptionsViewModel.Input(trigger: viewWillAppear.asDriverOnErrorJustComplete())
+//   let output = viewModel.transform(input: input)
     
 //    output.result
 //      .drive(onNext: { [weak self] item in

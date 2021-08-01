@@ -10,14 +10,14 @@ final class SavedViewModel: ViewModelType {
   
   struct Output {
     //    let fetching: Driver<Bool>
-    //    let createSearch: Driver<Void>
+    //    let result: Driver<Void>
     //    let error: Driver<Error>
   }
   
-  private let useCase: ScenesUseCase
+  private let useCase: Domain.SavedUseCase
   private let navigator: SavedNavigator
   
-  init(useCase: ScenesUseCase, navigator: SavedNavigator) {
+  init(useCase: Domain.SavedUseCase, navigator: SavedNavigator) {
     self.useCase = useCase
     self.navigator = navigator
   
